@@ -4,8 +4,9 @@ $fontFamily: 'IQOS-Regular',
 'Verdana',
 sans-serif;
 $fontSize: 16px;
+$mainColor: #34303D;
 $minWidth: 360px;
-$maxWidthContainer: 1200px;
+$maxWidthContainer: 1360px;
 
 $color-black: #000;
 $color-white: #fff;
@@ -14,6 +15,9 @@ $color-34: #34303D;
 $color-94: #949494;
 $color-04: #049CA1;
 $color-E5: #E5E5E5;
+$color-F8: #F8F7F3;
+$color-EB: #EB5757;
+$color-16: #168b3f;
 
 $xl: 1200px;
 $lg: 992px;
@@ -21,3 +25,14 @@ $md: 768px;
 $sm: 576px;
 $xsm: 479px;
 $xxsm: 411px;
+
+$whiteColor: #fff;
+$lightColor: #F6F4F0;
+$greyColor: #949494;
+$darkBlueColor: #287BAF;
+$aquaColor: #00D1D2;
+
+$pc: 85rem; // 1360px
+$tablet: 62rem; // 992px
+$mobile: 48rem; // 768px
+$mobileSmall: 30rem; // 480px

@@ -1,0 +1,151 @@
+.footer {
+
+  &__content,
+  &__faq {
+    background: $mainColor;
+  }
+
+  &__faq {
+    border-top: 1px solid #57555D;
+  }
+
+  &__faq-additional {
+    padding-top: rem(25);
+    padding-bottom: rem(25);
+    padding-right: rem(20);
+    padding-left: rem(20);
+    border-bottom: 1px solid #57555D;
+
+    @media (max-width: $tablet) {
+      padding-right: rem(15);
+      padding-left: rem(15);
+    }
+  }
+
+  &__faq-item {
+    color: var(--White, #FFF);
+    opacity: 0.7;
+    font-family: 'NotoSans-Light';
+    font-size: clamp(0.75rem, 0.721rem + 0.13vw, 0.875rem);
+    font-style: normal;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 0.15px;
+  }
+
+  &__wrapp-content {
+    padding-top: rem(54);
+    padding-bottom: rem(32);
+
+    @media (max-width:$mobileSmall) {
+      padding-top: rem(24);
+      padding-bottom: rem(19);
+    }
+  }
+
+  &__logo-18 {
+    display: inline-block;
+    max-width: 42px;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(14);
+    min-height: 92px;
+  }
+
+  &__prefooter {
+    background: $whiteColor;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  &__tagline {
+    font-size: rem(14);
+    line-height: math.div(18, 14);
+    letter-spacing: -0.01em;
+    color: #9D9FA2;
+    margin-top: rem(20);
+
+    &:last-child {
+      margin-top: 0;
+    }
+  }
+
+  &__warning-text {
+    font-size: rem(16);
+    line-height: rem(24);
+    text-align: center;
+    text-transform: uppercase;
+    color: #B8B7BB;
+
+    @media (max-width: $tablet) {
+      font-size: rem(12);
+      line-height: math.div(16, 12);
+      text-align: left;
+    }
+  }
+
+  &__logo-iqos {
+    display: inline-block;
+    max-width: 141px;
+    max-height: 24px;
+    width: 100%;
+  }
+
+  &__wrapp-faq {
+    display: flex;
+    justify-content: space-between;
+    padding-top: rem(32);
+    padding-bottom: rem(48);
+    padding-right: rem(20);
+    padding-left: rem(20);
+
+    @media (max-width: $tablet) {
+      flex-direction: column-reverse;
+      align-items: center;
+      @include flex-gap(27px, false);
+      padding-top: rem(20);
+      padding-bottom: rem(15);
+      padding-right: rem(15);
+      padding-left: rem(15);
+    }
+  }
+}
+
+.footer-content-list {
+  &__item {
+    font-size: rem(14);
+    line-height: math.div(18, 14);
+    letter-spacing: -0.01em;
+    color: #9D9FA2;
+  }
+}
+
+.footer-faq-list {
+  flex: 0 1 636px;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: $tablet) {
+    flex: 1;
+    @include flex-gap(20px);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  &__item {
+    font-weight: 400;
+    font-size: rem(15);
+    line-height: math.div(18, 15);
+    color: $whiteColor;
+    @include transitionHover($whiteColor);
+
+
+    @media (max-width: $mobileSmall) {
+      font-size: rem(11);
+      line-height: math.div(13, 11);
+    }
+  }
+}
