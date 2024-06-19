@@ -1,20 +1,27 @@
-let timer;
-let x = 15;
-let totalTime = 60000;
-countdown();
+// Set the date we're counting down to
+var countDownDate = new Date("June 19, 2024 16:37:25").getTime();
 
-function countdown() {  
-  if (x < 0) {
-    clearTimeout(timer); // timer stop on zero
-  } else if (x <= 4 && x > 1) {
-    timer = setTimeout(countdown, totalTime);
-    document.getElementById('timer').innerHTML = x + ' Минуты';
-  } else if (x == 1) {
-    timer = setTimeout(countdown, totalTime);
-    document.getElementById('timer').innerHTML = x + ' Минута';
-  } else {
-    timer = setTimeout(countdown, totalTime);
-    document.getElementById('timer').innerHTML = x + ' Минут';
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("timer").innerHTML = hours + "ч " + minutes + "м " + seconds + "с ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "EXPIRED";
   }
-  x--;
-}
+}, 1000);
