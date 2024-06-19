@@ -1,27 +1,83 @@
-// Set the date we're counting down to
-var countDownDate = new Date("June 19, 2024 16:37:25").getTime();
+const countdown = new Date("June 27, 2024 12:00:00").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+const days = document.querySelector(".days").querySelector(".flip-card");
+const hours = document.querySelector(".hours").querySelector(".flip-card");
+const minutes = document.querySelector(".minutes").querySelector(".flip-card");
+const seconds = document.querySelector(".seconds").querySelector(".flip-card");
 
-  // Get today's date and time
-  var now = new Date().getTime();
+// ** get the time totals, return them
+function getTimeRemaining(countdown) {
+	const now = new Date();
+	const diff = countdown - now;
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+	const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+	const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+	const minutes = Math.floor((diff / 1000 / 60) % 60);
+	const seconds = Math.floor((diff / 1000) % 60);
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	return {
+		diff,
+		days,
+		hours,
+		minutes,
+		seconds
+	};
+}
 
-  // Display the result in the element with id="demo"
-  document.getElementById("timer").innerHTML = hours + "ч " + minutes + "м " + seconds + "с ";
+function initializeClock(countdown) {
+	function updateClock() {
+		const t = getTimeRemaining(countdown);
+    console.log(t);
+		addFlip(days, t.days);
+		addFlip(hours, t.hours);
+		addFlip(minutes, t.minutes);
+		addFlip(seconds, t.seconds);
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "EXPIRED";
-  }
-}, 1000);
+		if (t.diff <= 0) {
+			clearInterval(timeinterval);
+		}
+	}
+
+	updateClock();
+	const timeinterval = setInterval(updateClock, 1000);
+}
+
+const addFlip = (card, time) => {
+	// ** confirm time has changed
+	const currTime = card.querySelector(".top-half").innerText;
+	if (time == currTime) return;
+
+	let t = time <= 9 ? `0${time}` : time;
+	const topHalf = card.querySelector(".top-half");
+	const bottomHalf = card.querySelector(".bottom-half");
+	const topFlip = document.createElement("div");
+	const bottomFlip = document.createElement("div");
+
+	// ** add animation, populate with current time
+	topFlip.classList.add("top-flip");
+	topFlip.innerText = currTime;
+
+	bottomFlip.classList.add("bottom-flip");
+
+	// ** animation begins, update top-half to new time
+	topFlip.addEventListener("animationstart", () => {
+		topHalf.innerText = t;
+	});
+
+	// ** animation ends, remove animated div, update bottom animation to new time
+	topFlip.addEventListener("animationend", () => {
+		topFlip.remove();
+		bottomFlip.innerText = t;
+	});
+
+	// ** animation ends, update bottom-half to new time, remove animated div
+	bottomFlip.addEventListener("animationend", () => {
+		bottomHalf.innerText = t;
+		bottomFlip.remove();
+	});
+
+	card.appendChild(topFlip);
+	card.appendChild(bottomFlip);
+};
+
+initializeClock(countdown);
