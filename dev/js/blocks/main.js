@@ -26,8 +26,7 @@ function getTimeRemaining(countdown) {
 
 function initializeClock(countdown) {
 	function updateClock() {
-		const t = getTimeRemaining(countdown);
-    console.log(t);
+		const t = getTimeRemaining(countdown);    
 		addFlip(days, t.days);
 		addFlip(hours, t.hours);
 		addFlip(minutes, t.minutes);
